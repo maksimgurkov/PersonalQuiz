@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ResultViewController: UIViewController {
+final class ResultViewController: UIViewController {
     
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var descriptionAnimal: UILabel!
     
     var answers: [Answer]!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -24,7 +24,11 @@ class ResultViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func result() {
+}
+// MARK: - Private Methods
+private extension ResultViewController {
+    
+    func result() {
         var frequentOfAnimal: [Animal: Int] = [:]
         let animals = answers.map { $0.animal }
         
@@ -42,7 +46,7 @@ class ResultViewController: UIViewController {
         updateUI(animal: resultAnimal)
     }
     
-    private func updateUI(animal: Animal) {
+    func updateUI(animal: Animal) {
         emojiLabel.text = "ВЫ - \(animal.rawValue)"
         descriptionAnimal.text = animal.definition
     }
